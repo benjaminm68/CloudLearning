@@ -1,5 +1,5 @@
 <?php
-//c'est un test bande de batards
+//test
 namespace App\Entity;
 
 use App\Repository\ModuleRepository;
