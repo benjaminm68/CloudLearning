@@ -1,6 +1,5 @@
 <?php
-// test BEN
-//test FLO
+
 namespace App\Entity;
 
 use App\Repository\CategorieRepository;
