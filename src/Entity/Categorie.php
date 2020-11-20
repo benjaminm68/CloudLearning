@@ -7,10 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-class Tchoin 
-{
-  if tchoin tchoin tchoin.... choisir Klos  
-}
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
  */
