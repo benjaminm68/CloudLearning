@@ -2,3 +2,14 @@ body{
     width: 100%;
 }
 
+.logo{
+    width: 150px;
+}
+
+.padding{
+    padding: 0.5em 15em!important;
+}
+
+.navbar-nav{
+    margin: auto;
+}
