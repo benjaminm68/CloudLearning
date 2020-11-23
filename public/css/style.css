@@ -29,3 +29,8 @@ body{
 .navbar-nav{
     margin: auto;
 }
+
+.login-form{
+    width: 25%;
+    margin: auto;
+}
