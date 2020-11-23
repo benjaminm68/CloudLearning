@@ -1,15 +1,30 @@
-body{
-    width: 100%;
+*{
+    box-sizing: border-box;
 }
 
-.logo{
-    width: 150px;
+body{
+    width: 80%;
+}
+
+.wrapper{
+    width: 80%;
 }
 
 .padding{
     padding: 0.5em 15em!important;
 }
 
+/*
+* LOGO
+*/
+.logo{
+    width: 150px;
+}
+
+
+/*
+* NAVBAR
+*/
 .navbar-nav{
     margin: auto;
 }
