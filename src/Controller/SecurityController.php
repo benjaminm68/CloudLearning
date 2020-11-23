@@ -28,21 +28,6 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    /**
-     * @Route("/registration", name="app_registration")
-     */
-    public function registration(AuthenticationUtils $authenticationUtils): Response
-    {
-
-        $user = new User();
-
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        
-        return $this->render('registration/register.html.twig',
-         ['form' => $form->createView()]);
-    }
-
-
 
     /**
      * @Route("/logout", name="app_logout")
