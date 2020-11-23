@@ -8,6 +8,27 @@
         <p>{{ ' Téléphone : ' ~ stagiaire.telephone}}</p>
 
         <h2>Sessions prévues</h2>
-       
+      <table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nom de la formation</th>
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">place(s) restante</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+{% for session in stagiaire.sessions %}
+<tr>
+    <th> {{session.contenir.nom }}</th>
+    <th>{{session.dateDebut | date("d/m/Y") }}</th>
+    <th>{{session.dateFin | date("d/m/Y") }}</th>
+    <th>{{session.nbPlaces }}</th>
+    
+{% endfor %}
 
+  </tbody>
+</table>
+      
 {% endblock %}
