@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des catégories{% endblock %}
+{% block styleheets %}
+{% endblock %}
+
+{% block contenu %}
+
+<h1>Liste des catégories</h1>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Descriptif</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+{% for categorie in categories %}
+<tr>
+    <th>{{categorie.nom}}</th>
+    <th>{{categorie.descriptif }}</th>
+    
+{% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}
+
