@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des stagiaires{% endblock %}
-{% block styleheets %}
-{% endblock %}
 
 {% block contenu %}
 
@@ -21,7 +19,7 @@
   
 {% for stagiaire in stagiaires %}
 <tr>
-    <th>{{stagiaire.prenom ~' '~ stagiaire.nom}}</th>
+    <th><a href="{{ path('stagiaire_show', {'id':stagiaire.id}) }}">{{ stagiaire.nom ~' '~ stagiaire.prenom }}</a></th>
     <th>{{stagiaire.dateNaissance | date("d/m/Y") }}</th>
     <th>{{stagiaire.email }}</th>
     <th>{{stagiaire.telephone }}</th>
