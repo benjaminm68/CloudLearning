@@ -35,10 +35,18 @@ body{
     margin: auto;
 }
 
-.login-form{
+/*
+*Login form
+*/
+
+.login-form, .register-form{
     width: 25%;
     margin: auto;
 }
+
+/*
+*Barre search
+*/
 
 .search {
     background-color: #01A89E;
