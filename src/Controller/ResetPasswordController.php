@@ -39,18 +39,18 @@ class ResetPasswordController extends AbstractController
      */
     public function request(Request $request, MailerInterface $mailer): Response
     {
-        $form = $this->createForm(ResetPasswordRequestFormType::class);
-        $form->handleRequest($request);
+        $form = $this->createForm(ResetPasswordRequestFormType::class); //création du formulaire
+        $form->handleRequest($request); //soumission de la requête du formulaire
 
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->processSendingPasswordResetEmail(
                 $form->get('email')->getData(),
                 $mailer
-            );
+            );//si formulaire soumis et validé on envoie un mail de reset password
         }
 
         return $this->render('reset_password/request.html.twig', [
-            'requestForm' => $form->createView(),
+            'requestForm' => $form->createView(), //affiche le formulaire dans la vue 
         ]);
     }
 
