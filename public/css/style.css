@@ -26,6 +26,11 @@ body{
 /*
 * NAVBAR
 */
+
+.navbar {
+    background-color: #073642 !important;
+}
+
 .navbar-nav{
     margin: auto;
 }
@@ -33,4 +38,12 @@ body{
 .login-form{
     width: 25%;
     margin: auto;
+}
+
+.search {
+    background-color: #01A89E;
+}
+
+.logout {
+    margin-left: 1em;
 }
