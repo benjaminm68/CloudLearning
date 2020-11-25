@@ -15,6 +15,11 @@ body{
     padding: 0.5em 15em!important;
 }
 
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
 /*
 * LOGO
 */
@@ -52,6 +57,40 @@ body{
     background-color: #01A89E;
 }
 
+/*
+* Btn logout
+*/
+
 .logout {
     margin-left: 1em;
+}
+
+/*
+* User
+*/
+
+.user-info{
+    width: 30%;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.user-info i{
+    cursor: pointer;
+}
+
+.user-info-top{
+    align-items: center;
+}
+
+.user-avatar img{
+    border-radius: 50%;
+}
+
+/*
+* FORM EDIT USER
+*/
+
+.edit-content{
+    display: none;
 }
