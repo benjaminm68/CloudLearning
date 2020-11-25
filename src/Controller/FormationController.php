@@ -7,10 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+     * @Route("formation")
+     */
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/formation", name="formation_index")
+     * @Route("/", name="formation_index")
      */
     public function index(): Response
     {

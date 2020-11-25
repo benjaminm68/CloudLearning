@@ -32,9 +32,12 @@
 		</div>
 
         <div class="edit-content">
-        <form class="flex" action="">
+
+		{# {{ form(EditUserType) }} #}
+        <form class="flex" action="{{ path('user_edit', {'id':user.id} ) }}">
         <input class=" form-control form-control-sm" type="email" name="email" placeholder="Modifier votre email">
-        <input type="submit" value="Valider">
+        <input class="btn btn-primary btn-sm" type="submit" value="Valider">
+
         </form></div>
 
 		<div class="user-role flex">
