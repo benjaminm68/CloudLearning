@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ formation.nom }}
+{% endblock %}
+
+{% block contenu %}
+	<h1>{{ formation.nom }}</h1>
+	<article>
+		<p>{{ formation.descriptif }}</p>
+		<img src="{{ formation.image }}" alt="image représentant la formation">
+	</article>
+
+	<h2>Sessions disponibles</h2>
+
+	{% for session in formation.sessions %}
+		<p>{{ session.dateDebut | date('d/m/Y')}}
+			-
+			{{ session.dateFin | date('d/m/Y') }}</p>
+	{% endfor %}
+
+	<h2>Inscription</h2>
+
+	<div class="contactForm mt-4">
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col">{{ form_row(form.firstname) }}</div>
+			<div class="col">{{ form_row(form.lastname) }}</div>
+		</div>
+
+		{{form_rest(form)}}
+
+        <div class="form-group">
+        <button class="btn btn-primary">Envoyer</button>
+        </div>
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
