@@ -65,6 +65,11 @@ body{
     margin-left: 1em;
 }
 
+.btn-primary {
+    background-color: #01A89E !important;
+    border: none;
+}
+
 /*
 * User
 */
