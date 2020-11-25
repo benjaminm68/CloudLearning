@@ -12,21 +12,17 @@
   <thead>
     <tr>
       <th scope="col">Nom de la formation</th>
-      <th scope="col">Date de début</th>
-      <th scope="col">Date de fin</th>
-      <th scope="col">place(s) restante</th>
+      <th scope="col">Description</th>
     </tr>
   </thead>
   <tbody>
   
 {% for formation in formations %}
-{{dump(formation)}}
+
 <tr>
-    <th>{{formation.nom}}</th>
-    <th>ouho</th>
-    <th>ouho</th>
-    <th>ouho</th>
-    
+    <td><a href="{{ path('formation_show', {'id':formation.id}) }}">{{ formation.nom }}</a></td>
+    <td>{{ formation.descriptif|striptags|slice(0,50)|raw }} ...</td>
+</tr>
 {% endfor %}
 
   </tbody>
@@ -34,3 +30,4 @@
 
 {% endblock %}
 
+{# {{ string|striptags|slice(0, 55)|raw }} #}
