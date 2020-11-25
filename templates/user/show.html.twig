@@ -1,18 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail user
+{% block title %}Détail
+	{{user.prenom ~' '~ user.nom}}
 {% endblock %}
 
 {% block body %}
-	<h1>Détail {{user.email}}</h1>
 
-	<ul>
-		{% for user in user %}
-			<li>
-				<a href="{{ path('user_show', {'id':user.id} ) }}">{{ user.email }}</a>
-			</li>
-		{% endfor %}
-	</ul>
+	<div class="user-info jumbotron">
 
-  
+
+		<div class="user-info-top flex">
+
+			<div class="user-avatar">
+				<img src="http://placehold.it/150x150" alt="avatar">
+				<i class="fas fa-pen"></i>
+			</div>
+
+			<div class="user-nom">
+				<h2>{{user.prenom ~' '~ user.nom}}</h2>
+			</div>
+		</div>
+
+
+		<div class="user-email flex">
+			<div class="content">
+				<h6>Email</h6>
+					<p>{{user.email}}</p>
+			</div>
+
+			<i id="edit" class="fas fa-pen"></i>
+		</div>
+
+        <div class="edit-content">
+        <form action="">
+        <input class=" form-control form-control-sm" type="email" name="email" placeholder="Modifier votre email">
+        <input type="submit" value="Valider">
+        </form></div>
+
+		<div class="user-role flex">
+			<div class="content">
+				<h6>Role</h6>
+                <p>Admin</p>
+
+			</div>
+			<i class="fas fa-pen"></i>
+			{# A mettre uniquement pour l'admin #}
+		</div>
+
+		<div class="user-password flex">
+			<div class="content">
+				<h6>Mot de passe</h6>
+                <p>********</p>
+
+			</div>
+			<i class="fas fa-pen"></i>
+		</div>
+	</div>
+
+
 {% endblock %}
