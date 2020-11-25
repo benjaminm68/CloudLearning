@@ -33,10 +33,9 @@
 
         <div class="edit-content">
 
-		{# {{ form(EditUserType) }} #}
-        <form class="flex" action="{{ path('user_edit', {'id':user.id} ) }}">
-        <input class=" form-control form-control-sm" type="email" name="email" placeholder="Modifier votre email">
-        <input class="btn btn-primary btn-sm" type="submit" value="Valider">
+		{{ form(EditUserType,{'attr': {'placeholder': 'TEST'} }) }}
+		
+       
 
         </form></div>
 

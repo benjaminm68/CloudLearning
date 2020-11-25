@@ -21,7 +21,6 @@ class UserController extends AbstractController
      */
     public function index(): Response
     {
-
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->getAll();
@@ -31,19 +30,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods="GET")
+     * @Route("/{id}", name="user_show_edit")
      */
-    public function show(User $user): Response {
-        return $this->render('user/show.html.twig', [
-            'user' => $user
-            ]);
-    }
-
-    /**
-     * @Route("/{id}", name="user_edit", methods="POST")
-     */
-    public function edit(User $user, Request $request, EntityManagerInterface $manager): Response {
-        return $this->render('user/show.html.twig', ['user' => $user]);
+    public function show(User $user, Request $request, EntityManagerInterface $manager): Response {
 
         if(!$user) {
             $user = new User();
@@ -53,13 +42,37 @@ class UserController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $manager->persist($user);// équivalent de prepare()
             $manager->flush();// pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-            return $this->redirectToRoute('/{id}');
+            return $this->redirectToRoute('home');
         }
+        
         return $this->render('user/show.html.twig', [
-            'formEditUser'=>$form->createView(),
+            'user' => $user,
+            'EditUserType'=>$form->createView(),
+            ]);
          
-        ]);
     }
+
+    /**
+     * @Route("/{id}", name="user_edit", methods="POST")
+     */
+    // public function edit(User $user, Request $request, EntityManagerInterface $manager): Response {
+    //     return $this->render('user/show.html.twig', ['user' => $user]);
+
+    //     if(!$user) {
+    //         $user = new User();
+    //     }
+    //     $form = $this->createForm(EditUserType::class, $user);
+    //     $form -> handleRequest($request);
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $manager->persist($user);// équivalent de prepare()
+    //         $manager->flush();// pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
+    //         return $this->redirectToRoute('/{id}');
+    //     }
+    //     return $this->render('user/show.html.twig', [
+    //         'formEditUser'=>$form->createView(),
+         
+    //     ]);
+    // }
 
 
 }

@@ -1,3 +1,3 @@
 $( "#edit" ).click(function() {
-    $('.edit-content').css('display', 'flex');
+    $('.edit-content').toggle('display', 'flex');
   });
