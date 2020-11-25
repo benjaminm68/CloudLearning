@@ -27,9 +27,12 @@
 			<div class="col">{{ form_row(form.firstname) }}</div>
 			<div class="col">{{ form_row(form.lastname) }}</div>
 		</div>
-
+        <div class="row">
+			<div class="col">{{ form_row(form.email) }}</div>
+			<div class="col">{{ form_row(form.phone) }}</div>
+		</div>
 		{{form_rest(form)}}
-
+        <br>
         <div class="form-group">
         <button class="btn btn-primary">Envoyer</button>
         </div>
