@@ -13,6 +13,7 @@
 
 			<div class="user-avatar">
 				<img src="http://placehold.it/150x150" alt="avatar">
+				<i class="fas fa-pen"></i>
 			</div>
 
 			<div class="user-nom">
@@ -27,11 +28,15 @@
 					<p>{{user.email}}</p>
 			</div>
 
-			
+			<i id="edit" class="fas fa-pen"></i>
 		</div>
 
         <div class="edit-content">
 
+        <p>Modifier votre email</p>
+        {{form(EditUserType)}}
+
+        <input class="btn btn-primary btn-edit" type="submit" value="valider">
         </form></div>
 
 		<div class="user-role flex">
@@ -40,6 +45,8 @@
                 <p>Admin</p>
 
 			</div>
+			<i class="fas fa-pen"></i>
+			{# A mettre uniquement pour l'admin #}
 		</div>
 
 		<div class="user-password flex">
@@ -48,7 +55,7 @@
                 <p>********</p>
 
 			</div>
-			
+			<i class="fas fa-pen"></i>
 		</div>
 	</div>
 

@@ -21,10 +21,10 @@
   
 {% for session in stagiaire.sessions %}
 <tr>
-    <th> {{session.contenir.nom }}</th>
-    <th>{{session.dateDebut | date("d/m/Y") }}</th>
-    <th>{{session.dateFin | date("d/m/Y") }}</th>
-    <th>{{session.nbPlaces }}</th>
+    <td> {{session.contenir.nom }}</td>
+    <td>{{session.dateDebut | date("d/m/Y") }}</td>
+    <td>{{session.dateFin | date("d/m/Y") }}</td>
+    <td>{{session.nbPlaces }}</td>
     
 {% endfor %}
 
