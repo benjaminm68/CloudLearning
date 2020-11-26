@@ -20,7 +20,7 @@
   <tbody>
   
 {% for session in sessions %}
-{{dump(session)}}
+
 <tr>
     <td> {{session.contenir.nom }}</td>
     <td>{{session.dateDebut | date("d/m/Y") }}</td>
