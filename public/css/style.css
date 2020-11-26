@@ -93,9 +93,13 @@ body{
 }
 
 .user-avatar img{
+    width: 60%;
     border-radius: 50%;
 }
 
+.h1-profil{
+    text-align: center;
+}
 /*
 * FORM EDIT USER
 */
