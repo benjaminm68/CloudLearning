@@ -7,7 +7,14 @@
 {% block contenu %}
 	<h1>{{ formation.nom }}</h1>
 	<article>
+		<h3>Description</h3>
 		<p>{{ formation.descriptif }}</p>
+		<h3>Modules</h3>
+		{# {% for module in formation.modules %}
+		<h4>{{ module.nom }}</h4>
+		<p>{{ module.descriptif }}</p>
+		{% endfor %} #}
+		
 		<img src="{{ formation.image }}" alt="image représentant la formation">
 	</article>
 
