@@ -19,6 +19,15 @@ class ModuleRepository extends ServiceEntityRepository
         parent::__construct($registry, Module::class);
     }
 
+    public function getAll(){
+
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT m
+                                                FROM App\Entity\Module m');
+        return $query->execute();
+    }
+
+
     // /**
     //  * @return Module[] Returns an array of Module objects
     //  */
