@@ -12,10 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 /**
-     * @Route("user")
-     */
+ * @Route("user")
+ */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/", name="user_index")
      */
@@ -30,49 +31,55 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show_edit")
+     * @Route("/myaccount", name="user_myaccount")
      */
-    public function show(User $user, Request $request, EntityManagerInterface $manager): Response {
+    public function  myAccount(Request $request, EntityManagerInterface $manager)
+    {
 
-        if(!$user) {
-            $user = new User();
-        }
+        $user = $this->getUser();
         $form = $this->createForm(EditUserType::class, $user);
-        $form -> handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $manager->persist($user);// équivalent de prepare()
-            $manager->flush();// pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-            return $this->redirectToRoute('home');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user); // équivalent de prepare()
+            $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
+            return $this->redirectToRoute('user_myaccount');
         }
-        
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-            'EditUserType'=>$form->createView(),
-            ]);
-         
+    
+        return $this->render('user/myaccount.html.twig', [
+            'EditUserType' => $form->createView(),
+            'user' => $this->getUser(),
+        ]);
     }
 
-    /**
-     * @Route("/{id}", name="user_edit", methods="POST")
-     */
-    // public function edit(User $user, Request $request, EntityManagerInterface $manager): Response {
-    //     return $this->render('user/show.html.twig', ['user' => $user]);
-
-    //     if(!$user) {
-    //         $user = new User();
-    //     }
+    // /**
+    //  * @Route("/editEmail", name="user_editEmail")
+    //  */
+    // public function editEmail(Request $request, EntityManagerInterface $manager): Response
+    // {
+    //      $user = $this->getUser();
     //     $form = $this->createForm(EditUserType::class, $user);
-    //     $form -> handleRequest($request);
-    //     if($form->isSubmitted() && $form->isValid()){
-    //         $manager->persist($user);// équivalent de prepare()
-    //         $manager->flush();// pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-    //         return $this->redirectToRoute('/{id}');
+    //     $form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $manager->persist($user); // équivalent de prepare()
+    //         $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
+    //         return $this->redirectToRoute('user_myaccount');
     //     }
+    //     $user = new User();
     //     return $this->render('user/show.html.twig', [
-    //         'formEditUser'=>$form->createView(),
-         
+    //         'user' => $user,
     //     ]);
     // }
+
+
+
+    /**
+     * @Route("/{id}", name="user_show", methods="GET")
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', ['user' => $user]);
+    }
+
 
 
 }

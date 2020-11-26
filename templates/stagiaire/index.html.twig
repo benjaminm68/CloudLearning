@@ -19,10 +19,10 @@
   
 {% for stagiaire in stagiaires %}
 <tr>
-    <th><a href="{{ path('stagiaire_show', {'id':stagiaire.id}) }}">{{ stagiaire.nom ~' '~ stagiaire.prenom }}</a></th>
-    <th>{{stagiaire.dateNaissance | date("d/m/Y") }}</th>
-    <th>{{stagiaire.email }}</th>
-    <th>{{stagiaire.telephone }}</th>
+    <td><a href="{{ path('stagiaire_show', {'id':stagiaire.id}) }}">{{ stagiaire.nom ~' '~ stagiaire.prenom }}</a></td>
+    <td>{{stagiaire.dateNaissance | date("d/m/Y") }}</td>
+    <td>{{stagiaire.email }}</td>
+    <td>{{stagiaire.telephone }}</td>
 </tr>
     
 {% endfor %}
