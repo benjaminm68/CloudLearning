@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditPasswordType;
 use App\Form\EditUserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,13 +41,35 @@ class UserController extends AbstractController
         $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($user); // équivalent de prepare()
-            $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
+            $manager->persist($user); 
+            $manager->flush(); 
             return $this->redirectToRoute('user_myaccount');
         }
     
         return $this->render('user/myaccount.html.twig', [
             'EditUserType' => $form->createView(),
+            'user' => $this->getUser(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/editPassword", name="user_edit_password")
+     */
+    public function editPassword(Request $request, EntityManagerInterface $manager){
+
+
+        $user = $this->getUser();
+        $form = $this->createForm(EditPasswordType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user); 
+            $manager->flush();
+            return $this->redirectToRoute('user_myaccount');
+        }
+    
+        return $this->render('user/editPassword.html.twig', [
+            'EditPasswordType' => $form->createView(),
             'user' => $this->getUser(),
         ]);
     }
@@ -79,7 +102,5 @@ class UserController extends AbstractController
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
     }
-
-
 
 }

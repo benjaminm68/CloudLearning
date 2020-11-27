@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/stagiaire")
+ * @Route("/secretariat")
  */
 
 class StagiaireController extends AbstractController

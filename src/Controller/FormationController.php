@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Entity\Formation;
 use App\Form\ContactType;
+use App\Form\AddFormationType;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -19,6 +22,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class FormationController extends AbstractController
 {
+
+
     /**
      * @Route("/", name="formation_index")
      */
@@ -33,6 +38,27 @@ class FormationController extends AbstractController
             'formations' => $formations,
         ]);
     }
+
+    /**
+     * @Route("/ajouter", name="formation_add")
+     */
+    public function add(Formation $formation = null, Request $request, EntityManagerInterface $manager)
+    {
+        if (!$formation) {
+            $formation = new Formation();
+        }
+        $form = $this->createForm(AddFormationType::class, $formation);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($formation);
+            $manager->flush();
+            return $this->redirectToRoute('formation');
+        }
+        return $this->render('formation/add.html.twig', [
+            'AddFormationType' => $form->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/{id}", name="formation_show")
@@ -50,9 +76,9 @@ class FormationController extends AbstractController
                 ->subject('Vous avez un nouveau message')
                 ->text(
                     'Expéditeur : ' . $contactFormData['email'] . \PHP_EOL .
-                    'Téléphone : ' .  $contactFormData['phone'] . \PHP_EOL .
-                    'Nom : ' .  $contactFormData['lastname'] . \PHP_EOL.
-                    'Prénom : ' .  $contactFormData['firstname'] . \PHP_EOL.
+                        'Téléphone : ' .  $contactFormData['phone'] . \PHP_EOL .
+                        'Nom : ' .  $contactFormData['lastname'] . \PHP_EOL .
+                        'Prénom : ' .  $contactFormData['firstname'] . \PHP_EOL .
                         $contactFormData['message'],
                     'text/plain'
                 );
