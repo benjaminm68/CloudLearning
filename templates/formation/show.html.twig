@@ -11,11 +11,11 @@
 		<p>{{ formation.descriptif }}</p>
 		<h3>Modules</h3>
 		{% for duree in formation.durees %}
-		<h6>{{ duree.modules.nom }}</h6>
-		<p>{{ duree.modules.descriptif }}</p>
+			<h6>{{ duree.modules.nom }}</h6>
+			<p>{{ duree.modules.descriptif }}</p>
 		{% endfor %}
-	
-		
+
+
 		<img src="{{ formation.image }}" alt="image représentant la formation">
 	</article>
 
@@ -27,24 +27,28 @@
 			{{ session.dateFin | date('d/m/Y') }}</p>
 	{% endfor %}
 
-	<h2>Inscription</h2>
+	<a href="#ancre"><button class="btn btn-primary" id="inscr">S'inscrire</button></a>
+	<div class="inscr-content">
+		<h2>Inscription</h2>
 
-	<div class="contactForm mt-4">
-		{{ form_start(form) }}
-		<div class="row">
-			<div class="col">{{ form_row(form.firstname) }}</div>
-			<div class="col">{{ form_row(form.lastname) }}</div>
-		</div>
-        <div class="row">
-			<div class="col">{{ form_row(form.email) }}</div>
-			<div class="col">{{ form_row(form.phone) }}</div>
-		</div>
-		{{form_rest(form)}}
-        <br>
-        <div class="form-group">
-        <button class="btn btn-primary">Envoyer</button>
-        </div>
+		<div class="contactForm mt-4">
+			{{ form_start(form) }}
+			<div class="row">
+				<div class="col">{{ form_row(form.firstname) }}</div>
+				<div class="col">{{ form_row(form.lastname) }}</div>
+			</div>
+			<div class="row">
+				<div class="col">{{ form_row(form.email) }}</div>
+				<div class="col">{{ form_row(form.phone) }}</div>
+			</div>
+			{{form_rest(form)}}
+			<br>
+			<div id="ancre" class="form-group">
+				<button class="btn btn-primary">Envoyer</button>
+			</div>
 
-		{{ form_end(form) }}
+			{{ form_end(form) }}
+		</div>
 	</div>
+
 {% endblock %}

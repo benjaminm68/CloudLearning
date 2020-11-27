@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     width: 100%;
 }
@@ -74,6 +78,19 @@ body{
     border: none;
 }
 
+.btn-warning {
+    color: white;
+}
+
+.btn {
+    justify-content: space-between;
+    width: 30%;
+}
+
+.btn a {
+    width: 33%;
+}
+
 /*
 * User
 */
@@ -116,3 +133,13 @@ body{
     color: white;
     margin-bottom: 1em;
 }
+
+/*
+* INSCRIPTION STAGIAIRE
+*/
+
+.inscr-content {
+    display: none;
+}
+
+
