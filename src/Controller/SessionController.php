@@ -47,7 +47,7 @@ class SessionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($session); // équivalent de prepare()
             $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-            return $this->redirectToRoute('session');
+            return $this->redirectToRoute('session_index');
         }
         return $this->render('session/add.html.twig', [
             'AddSessionType' => $form->createView()

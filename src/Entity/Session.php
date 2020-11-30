@@ -44,6 +44,11 @@ class Session
      */
     private $contenir;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
+
     public function __construct()
     {
         $this->participer = new ArrayCollection();
@@ -122,6 +127,18 @@ class Session
     public function setContenir(?Formation $contenir): self
     {
         $this->contenir = $contenir;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }
