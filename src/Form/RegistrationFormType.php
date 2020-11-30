@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
                 'choices' => [
                     'Formateur' => 'ROLE_USER',
                     'Secretaire' => 'ROLE_ADMIN',
-                    'Direction' => 'SUPER_ADMIN'
+                    'Direction' => 'ROLE_SUPER_ADMIN'
                 ],
                 'multiple' => true,
             ])
