@@ -25,6 +25,18 @@ body{
 }
 
 /*
+* ICON EDIT / DELETE
+*/
+
+.fa-trash-alt{
+    color: red;
+}
+
+.fa-edit{
+    color: #01A89E;
+}
+
+/*
 * LOGO
 */
 .logo{
@@ -84,7 +96,6 @@ body{
 
 .btn {
     justify-content: space-between;
-    width: 30%;
 }
 
 .btn a {

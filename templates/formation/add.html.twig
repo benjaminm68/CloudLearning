@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une formation{% endblock %}
-{% block styleheets %}
+
+{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+
+
+{% block title %} {{txt}} une formation
 {% endblock %}
 
 {% block contenu %}
 
-<h1>Ajouter une formation</h1>
+<h1>{{ txt }} une formation <span>{{formation}}</span></h1>
 
 {{form(AddFormationType)}}
 

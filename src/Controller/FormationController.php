@@ -23,6 +23,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FormationController extends AbstractController
 {
 
+    /**
+     * @Route("/delete/{id}", name="formation_delete")
+     */
+    public function delete(Formation $formation){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($formation);
+        $em->flush();
+
+        return $this->redirectToRoute('formation_index');
+
+    }
+
 
     /**
      * @Route("/", name="formation_index")
@@ -41,8 +55,9 @@ class FormationController extends AbstractController
 
     /**
      * @Route("/ajouter", name="formation_add")
+     * @Route("/edit{id}", name="formation_edit")
      */
-    public function add(Formation $formation = null, Request $request, EntityManagerInterface $manager)
+    public function addEdit(Formation $formation = null, Request $request, EntityManagerInterface $manager)
     {
         if (!$formation) {
             $formation = new Formation();
@@ -52,10 +67,12 @@ class FormationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($formation);
             $manager->flush();
-            return $this->redirectToRoute('formation');
+            return $this->redirectToRoute('formation_index');
         }
         return $this->render('formation/add.html.twig', [
-            'AddFormationType' => $form->createView()
+            'AddFormationType' => $form->createView(),
+            'editMode' => $formation->getId() !==null,
+            'formation' => $formation->getNom()
         ]);
     }
 

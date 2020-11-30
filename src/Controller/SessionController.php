@@ -15,6 +15,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class SessionController extends AbstractController
 {
+
+     /**
+     * @Route("/delete/{id}", name="session_delete")
+     */
+    public function delete(Session $session){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($session);
+        $em->flush();
+
+        return $this->redirectToRoute('session_index');
+    }
+
+
     /**
      * @Route("/", name="session_index")
      */
@@ -34,10 +49,11 @@ class SessionController extends AbstractController
         return $this->render('home/index.html.twig', ['session' => $session]);
     }
 
-    /**
+      /**
      * @Route("/ajouter", name="session_add")
+     * @Route("/edit{id}", name="session_edit")
      */
-    public function add(Session $session = null, Request $request, EntityManagerInterface $manager)
+    public function addEdit(Session $session = null, Request $request, EntityManagerInterface $manager)
     {
         if (!$session) {
             $session = new Session();
@@ -45,12 +61,14 @@ class SessionController extends AbstractController
         $form = $this->createForm(AddSessionType::class, $session);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($session); // équivalent de prepare()
-            $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-            return $this->redirectToRoute('session');
+            $manager->persist($session);
+            $manager->flush();
+            return $this->redirectToRoute('session_index');
         }
         return $this->render('session/add.html.twig', [
-            'AddSessionType' => $form->createView()
+            'AddSessionType' => $form->createView(),
+            'editMode' => $session->getId() !==null,
+            // 'session' => $session->getNom()
         ]);
     }
 }

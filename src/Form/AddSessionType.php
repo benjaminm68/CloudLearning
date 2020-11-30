@@ -20,7 +20,9 @@ class AddSessionType extends AbstractType
         $builder
             ->add('dateDebut')
             ->add('DateFin')
-            ->add('nbPlaces', IntegerType::class)
+            ->add('nbPlaces', IntegerType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
             // ->add('participer')
             ->add('contenir',EntityType::class, [
                 'class' => Formation::class,
@@ -29,7 +31,9 @@ class AddSessionType extends AbstractType
                 
                 'choice_label' => 'nom'
             ])
-            ->add('Creer', SubmitType::class)
+            ->add('Valider', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary'],
+            ])
        ; 
     }
 

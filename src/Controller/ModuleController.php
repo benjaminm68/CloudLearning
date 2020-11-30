@@ -16,6 +16,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
      */
 class ModuleController extends AbstractController
 {
+
+    /**
+     * @Route("/delete/{id}", name="module_delete")
+     */
+    public function delete(Module $module){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($module);
+        $em->flush();
+
+        return $this->redirectToRoute('module_index');
+    }
+
+
     /**
      * @Route("/", name="module_index")
      */
@@ -30,30 +45,30 @@ class ModuleController extends AbstractController
         ]);
     }
 
-          /**
- * @Route("/add", name="module_add")
- */
- 
- public function addModule(Module $module = null, Request $request, EntityManagerInterface $manager)
- {
-    if(!$module) {
-        $module = new Module();
+         /**
+     * @Route("/ajouter", name="module_add")
+     * @Route("/edit{id}", name="module_edit")
+     */
+    public function addEdit(Module $module = null, Request $request, EntityManagerInterface $manager)
+    {
+        if (!$module) {
+            $module = new Module();
+        }
+        $form = $this->createForm(AddModuleType::class, $module);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($module);
+            $manager->flush();
+            return $this->redirectToRoute('module_index');
+        }
+        return $this->render('module/add.html.twig', [
+            'AddModuleType' => $form->createView(),
+            'editMode' => $module->getId() !==null,
+            'module' => $module->getNom()
+        ]);
     }
-
-    $form = $this->createForm(AddModuleType::class, $module);
-    $form -> handleRequest($request);
-
-    if($form->isSubmitted() && $form->isValid()){
-        $manager->persist($module);
-        $manager->flush();
-
-        return $this->redirectToRoute('module_index');
-    }
-
-    return $this->render('module/add.html.twig', [
-        'AddModuleType'=>$form->createView(),
-    ]);
 
  }
     
-}
+ 
+
