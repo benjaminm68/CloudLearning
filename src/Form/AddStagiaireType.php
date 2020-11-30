@@ -7,12 +7,13 @@ use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class AddStagiaireType extends AbstractType
 {
@@ -35,12 +36,6 @@ class AddStagiaireType extends AbstractType
             ->add('telephone', TelType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('dateNaissance', BirthdayType::class)
-            ->add('email', EmailType::class)
-            ->add('telephone', TelType::class)
 
             ->add('sessions',EntityType::class, [
                 'class' => Session::class,
