@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une session{% endblock %}
-{% block styleheets %}
+
+{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+
+
+{% block title %} {{txt}} une session
 {% endblock %}
 
 {% block contenu %}
 
-<h1>Ajouter une session</h1>
+<h1>{{ txt }} une session <span>{{session}}</span></h1>
 
 {{form(AddSessionType)}}
 

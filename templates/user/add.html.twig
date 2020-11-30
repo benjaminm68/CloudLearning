@@ -5,14 +5,14 @@
 
 
 
-{% block title %} {{txt}} un stagiaire
+{% block title %} {{txt}} un user
 {% endblock %}
 
 {% block contenu %}
 
-<h1>{{ txt }} un stagiaire <span>{{stagiaire}}</span></h1>
+<h1>{{ txt }} un user <span>{{user}}</span></h1>
 
-{{form(AddStagiaireType)}}
+{{form(RegistrationFormType)}}
 
 {% endblock %}
 

@@ -16,6 +16,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategorieController extends AbstractController
 {
     /**
+     * @Route("/delete/{id}", name="categorie_delete")
+     */
+    public function delete(Categorie $categorie)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($categorie);
+        $em->flush();
+
+        return $this->redirectToRoute('categorie_index');
+    }
+
+
+    /**
      * @Route("/", name="categorie_index")
      */
     public function index(): Response
@@ -30,11 +45,12 @@ class CategorieController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/ajouter", name="categorie_add")
+     * @Route("/edit{id}", name="categorie_edit")
      */
-
-    public function add(Categorie $categorie = null, Request $request, EntityManagerInterface $manager)
+    public function addEdit(Categorie $categorie = null, Request $request, EntityManagerInterface $manager)
     {
         if (!$categorie) {
             $categorie = new Categorie();
@@ -42,43 +58,14 @@ class CategorieController extends AbstractController
         $form = $this->createForm(AddCategorieType::class, $categorie);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($categorie); // équivalent de prepare()
-            $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
+            $manager->persist($categorie);
+            $manager->flush();
             return $this->redirectToRoute('categorie_index');
         }
         return $this->render('categorie/add.html.twig', [
-            'AddCategorieType' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="categorie_edit")
-     */
-
-    public function edit(Categorie $categorie, Request $request, EntityManagerInterface $manager)
-    {
-        if (!$categorie) {
-            $categorie = new Categorie();
-        }
-
-        $form = $this->createForm(AddCategorieType::class, $categorie);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($categorie); // équivalent de prepare()
-            $manager->flush(); // pour valider les changements dans la base de données, il "sait" si il doit UPDATE ou INSERT et ce pour tout les objets persist()
-
-            return $this->redirectToRoute('categorie_index');
-        }
-
-        return $this->render('categorie/edit.html.twig', [
             'AddCategorieType' => $form->createView(),
             'editMode' => $categorie->getId() !== null,
+            'categorie' => $categorie->getNom()
         ]);
-    }
-
-    public function show(Categorie $categorie): Response
-    {
-        return $this->render('home/index.html.twig', ['categorie' => $categorie]);
     }
 }

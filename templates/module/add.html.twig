@@ -1,7 +1,19 @@
 {% extends 'base.html.twig' %}
-{% block title %}Ajouter un module{% endblock %}
+
+
+{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+
+
+{% block title %} {{txt}} un module
+{% endblock %}
 
 {% block contenu %}
-<h1>Ajouter un module</h1>
+
+<h1>{{ txt }} un module <span>{{module}}</span></h1>
+
 {{form(AddModuleType)}}
+
 {% endblock %}
+
+

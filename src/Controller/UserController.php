@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EditPasswordType;
 use App\Form\EditUserType;
+use App\Form\EditPasswordType;
+use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
 
+     /**
+     * @Route("/delete/{id}", name="user_delete")
+     */
+    public function delete(User $user){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('user_index');
+
+    }
+
+
     /**
      * @Route("/", name="user_index")
      */
@@ -28,6 +44,29 @@ class UserController extends AbstractController
             ->getAll();
         return $this->render('user/index.html.twig', [
             'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route("/ajouter", name="user_add")
+     * @Route("/edit{id}", name="user_edit")
+     */
+    public function addEdit(User $user = null, Request $request, EntityManagerInterface $manager)
+    {
+        if (!$user) {
+            $user = new User();
+        }
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('user_index');
+        }
+        return $this->render('user/add.html.twig', [
+            'RegistrationFormType' => $form->createView(),
+            'editMode' => $user->getId() !== null,
+            'user' => $user->getNom()
         ]);
     }
 
