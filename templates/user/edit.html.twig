@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+
+
+{% block title %} {{txt}} un user
+{% endblock %}
+
+{% block contenu %}
+
+<h1>{{ txt }} un user <span>{{user}}</span></h1>
+
+{{form(EditUserType)}}
+
+{% endblock %}
+
+

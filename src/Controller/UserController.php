@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditUserType;
+use App\Form\EditEmailType;
 use App\Form\EditPasswordType;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,6 +71,28 @@ class UserController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/edit{id}", name="user_edit")
+     */
+    public function Edit(User $user = null, Request $request, EntityManagerInterface $manager)
+    {
+        if (!$user) {
+            $user = new User();
+        }
+        $form = $this->createForm(EditUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('user_index');
+        }
+        return $this->render('user/edit.html.twig', [
+            'EditUserType' => $form->createView(),
+            'editMode' => $user->getId() !== null,
+            'user' => $user->getNom()
+        ]);
+    }
+
     /**
      * @Route("/myaccount", name="user_myaccount")
      */
@@ -77,7 +100,7 @@ class UserController extends AbstractController
     {
 
         $user = $this->getUser();
-        $form = $this->createForm(EditUserType::class, $user);
+        $form = $this->createForm(EditEmailType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user); 
@@ -86,7 +109,7 @@ class UserController extends AbstractController
         }
     
         return $this->render('user/myaccount.html.twig', [
-            'EditUserType' => $form->createView(),
+            'EditEmailType' => $form->createView(),
             'user' => $this->getUser(),
         ]);
     }
