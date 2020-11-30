@@ -22,21 +22,21 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nom', TextType::class, [
-            'attr' => ['class' => 'form-control'],
-        ])
+            ->add('nom', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
 
-        ->add('prenom', TextType::class, [
-            'attr' => ['class' => 'form-control'],
-        ])
+            ->add('prenom', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
 
-        ->add('email', EmailType::class, [
-            'attr' => ['class' => 'form-control'],
-        ])
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
 
-        ->add('avatar', TextType::class, [
-            'attr' => ['class' => 'form-control'],
-        ])
+            ->add('avatar', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
 
             ->add('roles', ChoiceType::class, [
                 'attr' => ['class' => 'form-control selectpicker',],
@@ -52,7 +52,8 @@ class RegistrationFormType extends AbstractType
                 'class' => Categorie::class,
                 'attr' => ['class' => 'form-control selectpicker',],
                 'multiple' => true,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'required' => false
 
             ])
 
@@ -63,15 +64,6 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer votre mot de passe'],
-            ])
-
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions',
-                    ]),
-                ],
             ])
 
             ->add('Sincrire', SubmitType::class, [
