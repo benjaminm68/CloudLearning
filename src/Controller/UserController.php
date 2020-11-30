@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -22,6 +23,7 @@ class UserController extends AbstractController
 {
 
      /**
+      *@IsGranted("ROLE_SUPER_ADMIN")
      * @Route("/delete/{id}", name="user_delete")
      */
     public function delete(User $user){
@@ -50,10 +52,10 @@ class UserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @Route("/ajouter", name="user_add")
-     * @Route("/edit{id}", name="user_edit")
      */
-    public function addEdit(User $user = null, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(User $user = null, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $passwordEncoder)
     {
         if (!$user) {
             $user = new User();
@@ -73,12 +75,12 @@ class UserController extends AbstractController
         }
         return $this->render('user/add.html.twig', [
             'RegistrationFormType' => $form->createView(),
-            'editMode' => $user->getId() !== null,
             'user' => $user->getNom()
         ]);
     }
 
      /**
+     * @IsGranted("ROLE_SUPER_ADMIN") 
      * @Route("/edit{id}", name="user_edit")
      */
     public function Edit(User $user = null, Request $request, EntityManagerInterface $manager)
