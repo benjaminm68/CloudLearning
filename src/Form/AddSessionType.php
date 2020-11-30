@@ -5,10 +5,10 @@ namespace App\Form;
 use App\Entity\Session;
 use App\Entity\Formation;
 use Symfony\Component\Form\AbstractType;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -23,6 +23,12 @@ class AddSessionType extends AbstractType
             ->add('nbPlaces', IntegerType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
+
+            ->add('Nom',TextType::class)
+            ->add('dateDebut', DateType::class)
+            ->add('DateFin', DateType::class)
+            ->add('nbPlaces', IntegerType::class)
+
             // ->add('participer')
             ->add('contenir',EntityType::class, [
                 'class' => Formation::class,
