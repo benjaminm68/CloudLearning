@@ -14,7 +14,7 @@ class PanelController extends AbstractController
 {
 
     /**
-     * @IsGranted("ROLE_SUPER_ADMIN")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/panel", name="panel_accueil")
      */
     public function index(): Response
