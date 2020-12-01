@@ -12,7 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @IsGranted("ROLE_ADMIN")
  * @Route("/stagiaire")
  */
 
@@ -20,8 +19,9 @@ class StagiaireController extends AbstractController
 {
 
      /**
-     * @Route("/delete/{id}", name="stagiaire_delete")
-     */
+      * @IsGranted("ROLE_ADMIN")
+      * @Route("/delete/{id}", name="stagiaire_delete")
+      */
     public function delete(Stagiaire $stagiaire){
 
         $em = $this->getDoctrine()->getManager();
@@ -50,6 +50,7 @@ class StagiaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ajouter", name="stagiaire_add")
      * @Route("/edit{id}", name="stagiaire_edit")
      */

@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -17,8 +18,9 @@ class SessionController extends AbstractController
 {
 
      /**
-     * @Route("/delete/{id}", name="session_delete")
-     */
+      * @IsGranted("ROLE_ADMIN")
+      * @Route("/delete/{id}", name="session_delete")
+      */
     public function delete(Session $session){
 
         $em = $this->getDoctrine()->getManager();
@@ -50,9 +52,10 @@ class SessionController extends AbstractController
     }
 
       /**
-     * @Route("/ajouter", name="session_add")
-     * @Route("/edit{id}", name="session_edit")
-     */
+       * @IsGranted("ROLE_ADMIN")
+       * @Route("/ajouter", name="session_add")
+       * @Route("/edit{id}", name="session_edit")
+       */
     public function addEdit(Session $session = null, Request $request, EntityManagerInterface $manager)
     {
         if (!$session) {
