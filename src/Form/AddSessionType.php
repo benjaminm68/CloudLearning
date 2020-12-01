@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Session;
 use App\Entity\Formation;
+use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -29,7 +30,15 @@ class AddSessionType extends AbstractType
             ->add('DateFin', DateType::class)
             ->add('nbPlaces', IntegerType::class)
 
-            // ->add('participer')
+            ->add('participer',EntityType::class, [
+                'class' => Stagiaire::class,
+                'attr' => ['class' => 'form-control selectpicker',
+                        ],
+              
+                'choice_label' => 'nom',
+                'multiple' => true
+                
+            ])
             ->add('contenir',EntityType::class, [
                 'class' => Formation::class,
                 'attr' => ['class' => 'form-control selectpicker',

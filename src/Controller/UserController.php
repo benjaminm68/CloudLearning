@@ -124,26 +124,6 @@ class UserController extends AbstractController
     }
 
 
-    /**
-     * @Route("/editPassword", name="user_edit_password")
-     */
-    public function editPassword(Request $request, EntityManagerInterface $manager){
-
-
-        $user = $this->getUser();
-        $form = $this->createForm(EditPasswordType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($user); 
-            $manager->flush();
-            return $this->redirectToRoute('user_myaccount');
-        }
-    
-        return $this->render('user/editPassword.html.twig', [
-            'EditPasswordType' => $form->createView(),
-            'user' => $this->getUser(),
-        ]);
-    }
 
     // /**
     //  * @Route("/editEmail", name="user_editEmail")

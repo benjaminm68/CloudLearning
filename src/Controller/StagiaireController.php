@@ -18,11 +18,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StagiaireController extends AbstractController
 {
 
-     /**
-      * @IsGranted("ROLE_ADMIN")
-      * @Route("/delete/{id}", name="stagiaire_delete")
-      */
-    public function delete(Stagiaire $stagiaire){
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/delete/{id}", name="stagiaire_delete")
+     */
+    public function delete(Stagiaire $stagiaire)
+    {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -30,7 +31,6 @@ class StagiaireController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('stagiaire_index');
-
     }
 
 
@@ -39,10 +39,10 @@ class StagiaireController extends AbstractController
      */
     public function index(): Response
     {
-        
-    $stagiaires = $this->getDoctrine()
-    ->getRepository(Stagiaire::class)
-    ->getAll();
+
+        $stagiaires = $this->getDoctrine()
+            ->getRepository(Stagiaire::class)
+            ->getAll();
 
         return $this->render('stagiaire/index.html.twig', [
             'stagiaires' => $stagiaires,
@@ -62,8 +62,10 @@ class StagiaireController extends AbstractController
         $form = $this->createForm(AddStagiaireType::class, $stagiaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $form->get('sessions')->getData();
             $manager->persist($stagiaire);
             $manager->flush();
+
             return $this->redirectToRoute('stagiaire_index');
         }
         return $this->render('stagiaire/add.html.twig', [
@@ -72,13 +74,12 @@ class StagiaireController extends AbstractController
             'stagiaire' => $stagiaire->getNom()
         ]);
     }
-    
-     /**
+
+    /**
      * @Route("/{id}", name="stagiaire_show", methods="GET")
      */
-    public function show(Stagiaire $stagiaire): Response {
+    public function show(Stagiaire $stagiaire): Response
+    {
         return $this->render('stagiaire/show.html.twig', ['stagiaire' => $stagiaire]);
     }
-
 }
-

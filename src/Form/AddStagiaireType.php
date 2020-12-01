@@ -36,16 +36,7 @@ class AddStagiaireType extends AbstractType
             ->add('telephone', TelType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-
-            ->add('sessions',EntityType::class, [
-                'class' => Session::class,
-                'attr' => ['class' => 'form-control selectpicker',
-                        ],
-              
-                'choice_label' => 'nom',
-                'multiple' => true
-                
-            ])
+            
             ->add('Valider', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])

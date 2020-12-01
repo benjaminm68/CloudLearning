@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditPasswordType;
 use App\Form\RegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,5 +38,27 @@ class SecurityController extends AbstractController
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    
+    /**
+     * @Route("/editPassword", name="user_edit_password")
+     */
+    public function editPassword(Request $request, EntityManagerInterface $manager){
+
+
+        $user = $this->getUser();
+        $form = $this->createForm(EditPasswordType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user); 
+            $manager->flush();
+            return $this->redirectToRoute('user_myaccount');
+        }
+    
+        return $this->render('user/editPassword.html.twig', [
+            'EditPasswordType' => $form->createView(),
+            'user' => $this->getUser(),
+        ]);
     }
 }
