@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
 
-{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
 
-
-
-{% block title %} {{txt}} un user
+{% block title %} Ajouter un user
 {% endblock %}
 
 {% block contenu %}
 
-<h1>{{ txt }} un user <span>{{user}}</span></h1>
+<h1>Ajouter un user <span>{{user}}</span></h1>
 
 {{form(RegistrationFormType)}}
 
