@@ -5,19 +5,48 @@
 {% endblock %}
 
 {% block contenu %}
-	<h1>{{ formation.nom }}</h1>
-	<article>
-		<h3>Description</h3>
-		<p>{{ formation.descriptif }}</p>
-		<h3>Modules</h3>
-		{% for duree in formation.durees %}
-			<h6>{{ duree.modules.nom }}</h6>
-			<p>{{ duree.modules.descriptif }}</p>
-		{% endfor %}
+
+	<div class="formation-content">
+
+		<h1>{{ formation.nom }}</h1>
+
+		<div class="formation-detail flex">
+
+			<div class="formation-desc">
+				<h4>Description</h4>
+				{{formation.descriptif}}
+
+				<div class="formation-module">
+					<h4>Module(s)</h4>
+					{% for module in formation.durees %}
+					<ul>
+					
+					<li>{{module}}</li>
+					
+					</ul>
+					{% endfor %}
+				</div>
+
+			</div>
 
 
-		<img src="{{ formation.image }}" alt="image représentant la formation">
-	</article>
+			<figure>
+				<img src="{{ formation.image }}" alt="image formation">
+			</figure>
+
+		</div>
+
+
+	</div>
+
+	{% if app.user %}
+
+	
+
+	<a class="btn btn-primary btn-sm" href="{{ path('add_duree', {'id': formation.id}) }}">Gerer les modules</a>
+	
+	{% endif %}
+
 
 	<h2>Sessions disponibles</h2>
 
@@ -27,7 +56,9 @@
 			{{ session.dateFin | date('d/m/Y') }}</p>
 	{% endfor %}
 
-	<a href="#ancre"><button class="btn btn-primary" id="inscr">S'inscrire</button></a>
+	<a href="#ancre">
+		<button class="btn btn-secondary" id="inscr">S'inscrire</button>
+	</a>
 	<div class="inscr-content">
 		<h2>Inscription</h2>
 
@@ -50,5 +81,4 @@
 			{{ form_end(form) }}
 		</div>
 	</div>
-
-{% endblock %}
+</div>{% endblock %}

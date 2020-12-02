@@ -23,16 +23,22 @@ class Duree
     private $nbJour;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="durees")
+     * @ORM\ManyToOne(targetEntity=Formation::class, inversedBy="durees", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $formation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Module::class, inversedBy="durees")
+     * @ORM\ManyToOne(targetEntity=Module::class, inversedBy="durees", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $modules;
+
+    public function __toString()
+    {
+        return $this->getModules().': '.$this->getNbJour().' jour(s)';
+      
+    }
 
     public function getId(): ?int
     {

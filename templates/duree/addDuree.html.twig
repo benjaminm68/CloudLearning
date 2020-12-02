@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Ajouter un module
+{% endblock %}
+
+{% block contenu %}
+
+<div class="content-module">
+
+
+
+<h3>Gestion des modules</h3>
+
+{{form_start(form)}}
+
+     <ul id="gestionDurees"
+    data-prototype="{{ form_row(form.durees.vars.prototype)|e }}">
+
+    {% for module in form.durees %}
+
+    <li class="test">
+        {{ form_row(module) }}
+    </li>
+        
+    {% endfor %}
+    </ul>
+
+    {{ form_row(form.Valider) }} 
+
+     {{form_end(form)}}
+
+</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="/js/collectionHandlerDuree.js"></script>
+{% endblock %}
+

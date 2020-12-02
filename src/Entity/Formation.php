@@ -30,7 +30,7 @@ class Formation
     private $descriptif;
 
     /**
-     * @ORM\OneToMany(targetEntity=Duree::class, mappedBy="formation")
+     * @ORM\OneToMany(targetEntity=Duree::class, mappedBy="formation", cascade={"persist"})
      */
     private $durees;
 

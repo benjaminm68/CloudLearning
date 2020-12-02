@@ -7,12 +7,30 @@ html {
 }
 
 body{
+    font-family: 'Nunito', sans-serif;
     width: 100%;
 }
 
 .wrapper{
     width: 80%;
     margin: auto;
+}
+
+.content-module{
+    width: 25%;
+    margin: 2em auto;
+}
+
+.content h1{
+    margin-bottom: 1em;
+}
+
+.content-module div:nth-child(2){
+    margin-bottom: 2em;
+}
+
+.label{
+    font-weight: 900;
 }
 
 .padding{
@@ -22,6 +40,19 @@ body{
 .flex{
     display: flex;
     justify-content: space-between;
+}
+
+li{
+    list-style: none;
+}
+
+#gestionDurees{
+    width: 70%;
+    padding: 0 0 0 1.2em;
+}
+
+h4{
+    font-weight: bold;
 }
 
 /*
@@ -76,6 +107,10 @@ body{
 /*
 * Btn
 */
+
+.btn-module{
+    margin: 0em 0em 1em 0em;
+}
 .btn-edit{
     margin-top: 0.3em;
     padding: 0.2em 1em;
@@ -85,8 +120,8 @@ body{
     margin-left: 1em;
 }
 
-.btn-primary {
-    background-color: #01A89E !important;
+.btn-secondary{
+    background: #01A89E!important;
     border: none;
 }
 
@@ -151,6 +186,45 @@ body{
 
 .inscr-content {
     display: none;
+}
+
+/*
+* DETAIL FORMATION
+*/
+
+.formation-content{
+    margin-top: 2em;
+}
+
+.formation-detail{
+    width: 100%;
+}
+
+.formation-desc{
+    width: 50%;
+}
+
+figure{
+    width: 40%;
+}
+
+.bg-card{
+    color: white;
+    background: linear-gradient(to right, #265f6d, #65cac4);
+}
+
+figure img{
+    width: 100%;
+}
+
+.formation-content h1{
+    text-align: center;
+    background: linear-gradient(to right, #265f6d, #65cac4);
+    padding: 0.2em;
+    width: 56%;
+    margin: auto;
+    color: white;
+    border-radius: 5px;
 }
 
 

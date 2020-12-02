@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Entity\Formation;
 use App\Form\ContactType;
+use App\Form\ModulesType;
 use App\Form\AddFormationType;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Mime\Email;
@@ -23,6 +24,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class FormationController extends AbstractController
 {
+
+     /**
+      * @IsGranted("ROLE_ADMIN")
+      * @Route("/addDuree/{id}", name="add_duree")
+      */
+      public function addModuleToFormation(Formation $formation, Request $request, EntityManagerInterface $manager){
+
+        $form = $this->createForm(ModulesType::class, $formation);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($formation);
+            $manager->flush();
+            return $this->redirectToRoute('formation_index');
+        }
+
+        return $this->render('duree/addDuree.html.twig', [
+            'form' => $form->createView(),
+            'formation' => $formation,
+        ]);
+    }
 
     /**
      * @IsGranted("ROLE_ADMIN")
