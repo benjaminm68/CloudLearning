@@ -125,6 +125,16 @@ h4{
     border: none;
 }
 
+.btn-outline-secondary{
+    border-color: #01A89E;
+    color: #01A89E;
+    
+}
+
+.btn-outline-secondary:hover{
+    background-color: #01A89E;
+}
+
 .btn-warning {
     color: white;
 }
