@@ -1,34 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block contenu %}
-<a href="{{ path('stagiaire_index') }}">Retour</a>
-        <h1>{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom }}</h1>
-        <p>{{ ' Né(e) le : ' ~ stagiaire.dateNaissance | date('d/m/Y')}}</p>
-        <p>{{ ' Adresse e-mail : ' ~ stagiaire.email }}</p>
-        <p>{{ ' Téléphone : ' ~ stagiaire.telephone}}</p>
+	<a href="{{ path('stagiaire_index') }}">Retour</a>
+	<h1>{{ stagiaire.nom ~ ' ' ~ stagiaire.prenom }}</h1>
+	<p>{{ ' Né(e) le : ' ~ stagiaire.dateNaissance | date('d/m/Y')}}</p>
+	<p>{{ ' Adresse e-mail : ' ~ stagiaire.email }}</p>
+	<p>{{ ' Téléphone : ' ~ stagiaire.telephone}}</p>
 
-        <h2>Sessions prévues</h2>
-      <table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Nom de la formation</th>
-      <th scope="col">Date de début</th>
-      <th scope="col">Date de fin</th>
-      <th scope="col">place(s) restante</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-{% for session in stagiaire.sessions %}
-<tr>
-    <td> {{session.contenir.nom }}</td>
-    <td>{{session.dateDebut | date("d/m/Y") }}</td>
-    <td>{{session.dateFin | date("d/m/Y") }}</td>
-    <td>{{session.nbPlaces }}</td>
-    
-{% endfor %}
+	<h2>Sessions prévues</h2>
+	<table class="table table-striped table-dark">
+		<thead>
+			<tr>
+				<th scope="col">Nom de la formation</th>
+				<th scope="col">Date de début</th>
+				<th scope="col">Date de fin</th>
+				<th scope="col">place(s) restante</th>
+			</tr>
+		</thead>
+		<tbody>
 
-  </tbody>
-</table>
-      
+			{% for session in stagiaire.sessions %}
+				<tr>
+					<td>{{session.contenir.nom }}</td>
+					<td>{{session.dateDebut | date("d/m/Y") }}</td>
+					<td>{{session.dateFin | date("d/m/Y") }}</td>
+					<td>{{session.nbPlaces }}</td>
+				</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+
 {% endblock %}

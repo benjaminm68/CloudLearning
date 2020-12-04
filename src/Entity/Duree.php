@@ -36,8 +36,7 @@ class Duree
 
     public function __toString()
     {
-        return $this->getModules().': '.$this->getNbJour().' jour(s)';
-      
+        return $this->getModules() . ': ' . $this->getNbJour() . ' jour(s)';
     }
 
     public function getId(): ?int

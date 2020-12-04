@@ -242,4 +242,14 @@ figure img{
     border-radius: 5px;
 }
 
+/*
+* ADDFLASH
+*/
 
+.flash-success{
+    color: lightseagreen !important;
+}
+
+.flash-notice{
+    color: coral;
+}
