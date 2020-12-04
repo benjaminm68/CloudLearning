@@ -24,6 +24,8 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="https://kit.fontawesome.com/3997b565b3.js" crossorigin="anonymous"></script>
     
     <!-- End layout styles -->
     
@@ -46,7 +48,7 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                  <h5 class="mb-0 font-weight-normal">{{ app.user.prenom ~' '~ app.user.nom }}</h5>
                   <span>Gold Member</span>
                 </div>
               </div>

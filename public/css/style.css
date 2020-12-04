@@ -55,6 +55,11 @@ h4{
     font-weight: bold;
 }
 
+.table th{
+    font-weight: 900!important;
+    color: white;
+}
+
 /*
 * ICON EDIT / DELETE
 */
