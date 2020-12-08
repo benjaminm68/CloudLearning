@@ -8,15 +8,16 @@ use App\Entity\Session;
 use App\Entity\Categorie;
 use App\Entity\Formation;
 use App\Entity\Stagiaire;
+use App\Form\AddStagiaireType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 // Normalement on écrit adminController <----
-/**
-     * @Route("/panel", name="panel_index")
-     */
+
 
 class PanelController extends AbstractController
 {
@@ -24,7 +25,7 @@ class PanelController extends AbstractController
    
 
     /**
-     * @Route("/", name="panel_accueil")
+     * @Route("/panel", name="panel_index")
      */
     public function index(): Response
     {
@@ -62,4 +63,10 @@ class PanelController extends AbstractController
             'sessions' => $sessions
         ]);
     }
+    
+  
+
+   
+
+    
 }

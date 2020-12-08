@@ -1,0 +1,67 @@
+{% extends "basePanel.html.twig" %}
+
+{% block title %}Ajouter Stagiaire
+{% endblock %}
+
+{% block body %}
+
+	<!-- partial -->
+
+	<div
+		class="container-fluid page-body-wrapper">
+		<!-- partial:partials/_navbar.html -->
+		<nav class="navbar p-0 fixed-top d-flex flex-row">
+			<div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+				<a class="navbar-brand brand-logo-mini" href="index.html"><img src="/img/cloud_learning.png" alt="logo"/></a>
+			</div>
+			{# AJOUTER BOUTTON DECONNEXION ICI #}
+		</nav>
+		<!-- partial -->
+		<div class="main-panel">
+			<div
+				class="content-wrapper">
+
+
+				{# TABLEAU LISTE FORMATIONS #}
+				<div class="row ">
+					<div class="col-12 grid-margin">
+						<div class="card">
+							<div class="card-body">
+
+								<div class="table-responsive">
+									{% set txt = (editMode) ? 'Modifier' : 'Ajouter' %}
+
+
+									<h1>{{ txt }}
+										un stagiaire
+										<span>{{stagiaire}}</span>
+									</h1>
+
+									{{form(AddStagiaireType)}}
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				<footer class="footer">
+					<div class="d-sm-flex justify-content-center justify-content-sm-between">
+						<span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> © CloudLearning Panel 2020</span>
+						
+					</div>
+				</footer>
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+
+
+{% endblock %}

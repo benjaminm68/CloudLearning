@@ -44,7 +44,7 @@ class StagiaireController extends AbstractController
             ->getRepository(Stagiaire::class)
             ->getAll();
 
-        return $this->render('stagiaire/index.html.twig', [
+        return $this->render('panel/panel-listeStagiaire.html.twig', [
             'stagiaires' => $stagiaires,
         ]);
     }
@@ -62,13 +62,12 @@ class StagiaireController extends AbstractController
         $form = $this->createForm(AddStagiaireType::class, $stagiaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $form->get('sessions')->getData();
             $manager->persist($stagiaire);
             $manager->flush();
 
             return $this->redirectToRoute('stagiaire_index');
         }
-        return $this->render('stagiaire/add.html.twig', [
+        return $this->render('panel/panel-ajouterStagiaire.html.twig', [
             'AddStagiaireType' => $form->createView(),
             'editMode' => $stagiaire->getId() !== null,
             'stagiaire' => $stagiaire->getNom()

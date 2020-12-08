@@ -46,7 +46,7 @@ class UserController extends AbstractController
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->getAll();
-        return $this->render('user/index.html.twig', [
+        return $this->render('panel/panel-listeUser.html.twig', [
             'users' => $users,
         ]);
     }
@@ -73,7 +73,7 @@ class UserController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('user_index');
         }
-        return $this->render('user/add.html.twig', [
+        return $this->render('panel/panel-ajouterUser.html.twig', [
             'RegistrationFormType' => $form->createView(),
             'user' => $user->getNom()
         ]);
@@ -95,7 +95,7 @@ class UserController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('user_index');
         }
-        return $this->render('user/edit.html.twig', [
+        return $this->render('panel/panel-editerUser.html.twig', [
             'EditUserType' => $form->createView(),
             'editMode' => $user->getId() !== null,
             'user' => $user->getNom()
