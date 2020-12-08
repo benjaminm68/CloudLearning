@@ -34,6 +34,7 @@ class AddSessionType extends AbstractType
                 'class' => Stagiaire::class,
                 'attr' => ['class' => 'form-control selectpicker',
                         ],
+                'required' => false,
               
                 'choice_label' => 'nom',
                 'multiple' => true
