@@ -11,6 +11,12 @@ body{
     width: 100%;
 }
 
+.jumbotron {
+   
+    background-color: #0000002e!important;
+   
+}
+
 .wrapper{
     width: 80%;
     margin: auto;
@@ -184,15 +190,18 @@ h4{
 
 .edit-content{
     display: none;
-    border: 1px solid #b5b5b5;
     display: none;
     margin: auto;
     border-radius: 3px;
     text-align: center;
     padding: 0.5em 5em;
-    background: #073642;
+    background: #00000040;
     color: white;
     margin-bottom: 1em;
+}
+
+.fa-pen{
+    color: white;
 }
 
 /*
@@ -282,6 +291,7 @@ figure img{
     height: 200px;
     border-radius: 50%;
     box-shadow: 1px 3px 4px -2px #888888;
+    object-fit: cover;
 }
   
   .overlay {
@@ -391,4 +401,21 @@ figure img{
 
   .aPropos-img img{
     width: 100%;
+}
+
+/*
+* EDIT PASSWORD
+*/
+
+.h1-pw{
+    text-align: center;
+}
+
+.editpw-content{
+    width: 30%;
+    margin: auto;
+}
+
+.editpw-content label{
+    display: block;
 }

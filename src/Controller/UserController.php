@@ -117,7 +117,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_myaccount');
         }
     
-        return $this->render('user/myaccount.html.twig', [
+        return $this->render('panel/panel-monCompte.html.twig', [
             'EditEmailType' => $form->createView(),
             'user' => $this->getUser(),
         ]);

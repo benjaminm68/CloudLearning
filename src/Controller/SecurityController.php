@@ -80,7 +80,7 @@ class SecurityController extends AbstractController
             }
         }
 
-        return $this->render('user/editPassword.html.twig', [
+        return $this->render('panel/panel-editPassword.html.twig', [
             'EditPasswordType' => $form->createView(),
             'user' => $this->getUser(),
         ]);

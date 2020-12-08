@@ -25,6 +25,7 @@ class EditPasswordType extends AbstractType
             ])
 
             ->add('password', RepeatedType::class, [
+                'attr' => ['class' => 'form-control-sm form-control'],
                 'type' => PasswordType::class,
                 'first_options' => [
                     'constraints' => [
