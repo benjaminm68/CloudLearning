@@ -42,7 +42,7 @@ class ModuleController extends AbstractController
             ->getRepository(Module::class)
             ->getAll();
 
-        return $this->render('module/index.html.twig', [
+        return $this->render('panel/panel-listeModule.html.twig', [
             'modules' => $modules,
         ]);
     }
@@ -64,7 +64,7 @@ class ModuleController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('module_index');
         }
-        return $this->render('module/add.html.twig', [
+        return $this->render('panel/panel-ajouterModule.html.twig', [
             'AddModuleType' => $form->createView(),
             'editMode' => $module->getId() !==null,
             'module' => $module->getNom()

@@ -42,7 +42,7 @@ class CategorieController extends AbstractController
             ->getRepository(Categorie::class)
             ->getAll();
 
-        return $this->render('categorie/index.html.twig', [
+        return $this->render('panel/panel-listeCategorie.html.twig', [
             'categories' => $categories,
         ]);
     }
@@ -65,7 +65,7 @@ class CategorieController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('categorie_index');
         }
-        return $this->render('categorie/add.html.twig', [
+        return $this->render('panel/panel-ajouterCategorie.html.twig', [
             'AddCategorieType' => $form->createView(),
             'editMode' => $categorie->getId() !== null,
             'categorie' => $categorie->getNom()

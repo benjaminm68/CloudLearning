@@ -97,7 +97,7 @@ class FormationController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('formation_index');
         }
-        return $this->render('formation/add.html.twig', [
+        return $this->render('panel/panel-ajouterStagiaire.html.twig', [
             'AddFormationType' => $form->createView(),
             'editMode' => $formation->getId() !==null,
             'formation' => $formation->getNom()

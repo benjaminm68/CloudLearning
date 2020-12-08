@@ -43,7 +43,7 @@ class SessionController extends AbstractController
     ->getRepository(Session::class)
     ->getAll();
 
-        return $this->render('session/index.html.twig', [
+        return $this->render('panel/panel-listeSession.html.twig', [
             'sessions' => $sessions,
         ]);
     }
@@ -69,7 +69,7 @@ class SessionController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('session_index');
         }
-        return $this->render('session/add.html.twig', [
+        return $this->render('panel/panel-ajouterSession.html.twig', [
             'AddSessionType' => $form->createView(),
             'editMode' => $session->getId() !==null,
             'session' => $session->getNom()
