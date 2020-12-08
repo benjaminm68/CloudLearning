@@ -2,18 +2,60 @@
 
 {% block body %}
 
-<h1>OUHO</h1>
+	<h1 class="home-h1">Formation à la une</h1>
+	<div class="home-content padding">
 
-<a href="{{ path('stagiaire_index') }}">Liste des Stagiaires</a>
-</br>
-<a href="{{ path('formation_index') }}">Liste des Formations</a>
-</br>
-<a href="{{ path('session_index') }}">Liste des Sessions</a>
-</br>
-<a href="{{ path('categorie_index') }}">Liste des Catégories</a>
-</br>
-<a href="{{ path('module_index') }}">Liste des Modules</a>
-</br>
-<a href="{{ path('user_index') }}">Liste des Users</a>
 
-{% endblock %}
+		{% for categorie in categories %}
+
+			{% if categorie.id <= 6 %}
+
+				<div class="container-categorie">
+					<div class="card-txt">
+						<h6>{{ categorie.nom }}</h6>
+					</div>
+					<img src="https://straformation.fr/wp-content/uploads/2018/11/computer-2563737_640-1.jpg" alt="Avatar" class="image">
+					<div class="overlay">
+						<div class="text">
+							<a href="">Voir les formations</a>
+						</div>
+					</div>
+				</div>
+
+
+			{% endif %}
+
+
+		{% endfor %}
+
+
+	</div>
+
+	<div class="aPropos padding">
+		<h2>A propos</h2>
+
+		<div class="aPropos-content flex">
+			<div class="aPropos-txt">
+
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque sed enim quo nulla? Qui quasi itaque maxime libero laborum odio facere dolorem dicta cupiditate eum. Explicabo rerum cumque sint quis.</p>
+			</div>
+
+            <div class="aPropos-img">
+            <img src="https://www.acodi.fr/upload/news/image/20181213-2014-bur-par-14062-les-lilas-view-paris-0.jpg" alt="">
+            </div>
+		</div>
+	</div>
+
+	<div class="nav">
+		<a href="{{ path('stagiaire_index') }}">Liste des Stagiaires</a>
+	</br>
+	<a href="{{ path('formation_index') }}">Liste des Formations</a>
+</br>
+<a href="{{ path('session_index') }}">Liste des Sessions</a></br><a href="{{ path('categorie_index') }}">Liste des Catégories</a></br><a href="{{ path('module_index') }}">Liste des Modules</a></br><a href="{{ path('user_index') }}">Liste des Users</a></div>{% endblock %}

@@ -253,3 +253,142 @@ figure img{
 .flash-notice{
     color: coral;
 }
+
+/*
+* HOME-CONTENT
+*/
+
+.home-content{
+    display: flex;
+    margin-top: 2em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav{
+    font-size: small;
+}
+
+.container-categorie {
+    position: relative;
+    width: 20%;
+    margin-right: 4em;
+    margin-bottom: 4em;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 1px 3px 4px -2px #888888;
+}
+  
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: #01a89e;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    
+  }
+  
+  .container-categorie:hover .overlay {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  .text {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .card-txt{
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    color: #01a89e;
+    width: 100%;
+    text-align: center;
+    background: rgb(0,0,0,0.3);
+    padding-top: 8px;
+    border-radius: 5px;
+   
+  }
+
+  .card-txt h6{
+      font-weight: 900;
+  }
+
+  .text a{
+    color: white;
+    border: 1px solid white;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 0.2em 0.5em;
+    font-weight: bold;
+  }
+
+  .text a:hover{
+      border: 3px solid white;
+      transition: 0.5s;
+  }
+
+  .home-h1{
+    margin-left: 6em;
+    margin-top: 2em;
+    font-weight: bold;
+    color: #073642;
+  }
+
+  /*
+  * A PROPOS
+  */
+
+  .aPropos-content{
+      justify-content: space-between;
+  }
+
+  .aPropos h2{
+    background: #073642;
+    color: white;
+    padding: 0.2em;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .aPropos-txt{
+      width: 50%;
+      padding-right: 20px;
+  }
+
+  .aPropos-txt p{
+      text-align: justify;
+  }
+
+  .aPropos-img{
+      width: 50%;
+  }
+
+  .aPropos-img img{
+    width: 100%;
+}
