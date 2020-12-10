@@ -1,36 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formations{% endblock %}
+{% block title %}Formations
+{% endblock %}
 
 
 {% block contenu %}
 
-<h1>Liste des formations</h1>
+	<h1>Nos Formations</h1>
 
-<a class="btn btn-primary" href="{{ path('formation_add') }}"> Ajouter une formation</a>
 
-<table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Nom de la formation</th>
-      <th scope="col">Description</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-{% for formation in formations %}
+	<div class="home-content padding">
 
-<tr>
-    <td><a href="{{ path('formation_show', {'id':formation.id}) }}">{{ formation.nom }}</a></td>
-    <td>{{ formation.descriptif|striptags|slice(0,50)|raw }} ...</td>
-    <td><a href="{{ path('formation_delete', {'id':formation.id }) }}"><i class="far fa-trash-alt"></i></a> <a href="{{ path('formation_edit', {'id':formation.id }) }}"><i class="far fa-edit"></i></a></td>
-</tr>
-{% endfor %}
 
-  </tbody>
-</table>
+		{% for formation in formations %}
+
+			<div class="container-categorie">
+				<div class="card-txt">
+					<h6>{{ formation.nom }}</h6>
+				</div>
+				<img src="{{formation.image}}" alt="représentation de la formation" class="image">
+				<div class="overlay">
+					<div class="text">
+						<a href="{{ path('formation_show', {'id':formation.id}) }}">En savoir plus</a>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+
+
+	</div>
+
+
+	{# <table class="table table-striped table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">Nom de la formation</th>
+		      <th scope="col">Description</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  
+		{% for formation in formations %}
+		
+		<tr>
+		    <td><a href="{{ path('formation_show', {'id':formation.id}) }}">{{ formation.nom }}</a></td>
+		    <td>{{ formation.descriptif|striptags|slice(0,50)|raw }} ...</td>
+		    <td><a href="{{ path('formation_delete', {'id':formation.id }) }}"><i class="far fa-trash-alt"></i></a> <a href="{{ path('formation_edit', {'id':formation.id }) }}"><i class="far fa-edit"></i></a></td>
+		</tr>
+		{% endfor %}
+		
+		  </tbody>
+		</table> #}
 
 {% endblock %}
-
-
