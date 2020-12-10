@@ -53,9 +53,10 @@
 	<h2>Sessions disponibles</h2>
 
 	{% for session in formation.sessions %}
-		<p>{{ session.dateDebut | date('d/m/Y')}}
-			-
+		<p>{{ session.nom }} du {{ session.dateDebut | date('d/m/Y')}}
+		au
 			{{ session.dateFin | date('d/m/Y') }}</p>
+
 	{% endfor %}
 
 	<a href="#ancre">
