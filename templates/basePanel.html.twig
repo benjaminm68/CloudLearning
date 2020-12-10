@@ -49,7 +49,13 @@
                 </div>
                 <div class="profile-name">
                   <h5 class="mb-0 font-weight-normal">{{ app.user.prenom ~' '~ app.user.nom }}</h5>
-                  <span>Gold Member</span>
+                  {% if is_granted('ROLE_SUPER_ADMIN') %}
+                  <span>Direction</span>
+
+                  {% else %}
+                    <span>Formateur</span>
+    
+                  {% endif %}
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
