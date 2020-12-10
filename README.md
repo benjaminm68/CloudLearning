@@ -1,5 +1,5 @@
 # CloudLearning
-Exercice durant ma formation professionelle développeur web/web mobile
+Exercice durant ma formation professionnelle développeur web/web mobile
 
 Lien du PDF: http://benjaminmonvoisin.fr/pdf/Exo_Symfony-Sessions_MMU_V1.0%20-%20Copie.pdf
 
