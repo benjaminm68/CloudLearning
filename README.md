@@ -7,9 +7,9 @@ Exercice en binôme en utilisant le framework symfony
 
 TECHNOLOGIES UTILISÉES:
 
-* HTML5
 * TWIG
 * CSS3
 * BOOTSTRAP
 * JAVASCRIPT / JQUERY
 * PHP
+* SYMFONY

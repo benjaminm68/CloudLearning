@@ -45,7 +45,8 @@
 					<button class="search btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
 				</form>
 				{% if app.user %}
-					<a class="logout btn btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+					<a class="" href="{{ path('app_logout') }}"><i class="fas fa-power-off logout"></i></a>
+					<a href="{{ path('panel_index') }}"><i class="fas fa-user-shield panel"></i></a>
 				{% endif %}
 			</div>
 		</nav>

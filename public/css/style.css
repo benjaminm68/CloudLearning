@@ -128,7 +128,21 @@ h4{
 }
 
 .logout {
-    margin-left: 1em;
+    font-size: 1.5em;
+    color: rgb(134, 0, 0);
+    padding: 0em 1em;
+}
+.logout:hover{
+    text-shadow: 1px 1px 1px red;
+}
+
+.panel{
+    font-size: 1.5em;
+    color: orange;
+}
+
+.panel:hover{
+    color: rgb(230, 149, 0);
 }
 
 .btn-secondary{
