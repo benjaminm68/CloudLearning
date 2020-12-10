@@ -110,29 +110,30 @@ class FormationController extends AbstractController
      */
     public function show(Formation $formation, Request $request, MailerInterface $mailer): Response
     {
-        $form = $this->createForm(ContactType::class);
-        $form->handleRequest($request);
+        $form = $this->createForm(ContactType::class); //on appelle le formulaire
+        $form->handleRequest($request); // on traite la requete
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $contactFormData = $form->getData();
-            $message = (new Email())
-                ->from($contactFormData['email'])
-                ->to('testelan68@gmail.com')
+        if ($form->isSubmitted() && $form->isValid()) {//si form soumis et valide
+            $contactFormData = $form->getData();// on récupere les données
+            $message = (new Email()) // on instanci l'objet email
+                ->from($contactFormData['email'])//qui nous permet de générer un email au format type
+                ->to('testelan68@gmail.com')// qui nous sera envoyé après validation du form
                 ->subject('Vous avez un nouveau message')
                 ->text(
                     'Expéditeur : ' . $contactFormData['email'] . \PHP_EOL .
                         'Téléphone : ' .  $contactFormData['phone'] . \PHP_EOL .
                         'Nom : ' .  $contactFormData['lastname'] . \PHP_EOL .
                         'Prénom : ' .  $contactFormData['firstname'] . \PHP_EOL .
+                        'Session choisi: ' .  $contactFormData['session'] . \PHP_EOL .
                         $contactFormData['message'],
                     'text/plain'
                 );
-            $mailer->send($message);
-            $this->addFlash('success', 'Votre message a bien été envoyé.');
-            return $this->redirectToRoute('formation_index');
+            $mailer->send($message);//envoi de l'email
+            $this->addFlash('success', 'Votre message a bien été envoyé.');// on l'affiche dans le base.html
+            return $this->redirectToRoute('formation_index'); // on renvoit l'utilisateur sur la liste des formations
         }
-        return $this->render('formation/show.html.twig', [
-            'formation' => $formation,
+        return $this->render('formation/show.html.twig', [ // se code permet d'afficher la vue d'un détail d'une formation
+            'formation' => $formation,// où l'on retrouvera le formulaire
             'form' => $form->createView()
         ]);
     }
