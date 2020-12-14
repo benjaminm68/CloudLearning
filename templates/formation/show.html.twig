@@ -51,13 +51,14 @@
 	<a class="btn btn-outline-secondary btn-sm" href="{{ path('pdf_formation', {'id': formation.id}) }}">Télécharger le pdf</a>
 
 	<h2>Sessions disponibles</h2>
-
+{# 
 	{% for session in formation.sessions %}
 		<p>{{ session.nom }} du {{ session.dateDebut | date('d/m/Y')}}
 		au
 			{{ session.dateFin | date('d/m/Y') }}</p>
 
-	{% endfor %}
+	{% endfor %} #}
+	<div id="calendar-holder"></div>
 
 	<a href="#ancre">
 		<button class="btn btn-secondary" id="inscr">S'inscrire</button>
