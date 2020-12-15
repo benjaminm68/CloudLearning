@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Stagiaire;
 use App\Form\AddStagiaireType;
+use App\Form\AddStagiaireSessionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,6 +49,29 @@ class StagiaireController extends AbstractController
             'stagiaires' => $stagiaires,
         ]);
     }
+
+    /**
+     * @Route("/test", name="stagiaire_add_session")
+     */
+    public function stagiaireInSession(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $manager): Response
+    {
+
+      
+        $form = $this->createForm(AddStagiaireSessionType::class, $stagiaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($stagiaire);
+            $manager->flush();
+
+            return $this->redirectToRoute('stagiaire_index');
+        }
+        return $this->render('stagiaire/stagiaireSession.html.twig', [
+            'AddStagiaireSessionType' => $form->createView(),
+            'stagiaire' => $stagiaire
+        ]);
+    }
+
+
 
     /**
      * @IsGranted("ROLE_ADMIN")

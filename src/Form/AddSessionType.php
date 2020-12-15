@@ -30,17 +30,19 @@ class AddSessionType extends AbstractType
             ->add('DateFin', DateType::class)
             ->add('nbPlaces', IntegerType::class)
 
-            ->add('participer',EntityType::class, [
-                'class' => Stagiaire::class,
-                'attr' => ['class' => 'form-control selectpicker',
-                        ],
-                'required' => false,
+            // ->add('participer',EntityType::class, [
+            //     'class' => Stagiaire::class,
+            //     'attr' => ['class' => 'form-control selectpicker',
+            //             ],
+            //     'required' => false,
               
-                'choice_label' => 'nom',
-                'multiple' => true
+            //     'choice_label' => 'nom',
+            //     'multiple' => true
                 
-            ])
+            // ])
+
             ->add('contenir',EntityType::class, [
+                'label' => 'Formation',
                 'class' => Formation::class,
                 'attr' => ['class' => 'form-control selectpicker',
                         ],

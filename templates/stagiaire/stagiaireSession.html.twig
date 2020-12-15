@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Ajouter un stagiaire dans une session
+{% endblock %}
+
+{% block contenu %}
+
+	<div class="content-module">
+
+
+		<h3>Gestion des stagiaires</h3>
+
+	{{ form(AddStagiaireSessionType) }}
+
+	</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/collectionHandlerStagiaire.js"></script>
+{% endblock %}

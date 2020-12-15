@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Formation;
 use App\Form\AddSessionType;
+use App\Form\StagiaireType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,16 +72,31 @@ class SessionController extends AbstractController
             $session = new Session();
         }
         $form = $this->createForm(AddSessionType::class, $session);
+        $form2 = $this->createForm(StagiaireType::class, $session);
+        
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($session);
             $manager->flush();
+
             return $this->redirectToRoute('session_index');
         }
+        
+        $form2->handleRequest($request);
+        if ($form2->isSubmitted() && $form2->isValid()) {
+            $manager->persist($session);
+            $manager->flush();
+            
+            return $this->redirectToRoute('session_index');
+
+        }
+
         return $this->render('panel/panel-ajouterSession.html.twig', [
             'AddSessionType' => $form->createView(),
             'editMode' => $session->getId() !==null,
-            'session' => $session->getNom()
+            'session' => $session->getNom(),
+            'AddStagiaireType' =>$form2->createView()
         ]);
     }
 }

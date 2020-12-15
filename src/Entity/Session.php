@@ -54,6 +54,11 @@ class Session
         $this->participer = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nom.' | '.$this->dateDebut->format('d/m/Y').' - '.$this->DateFin->format('d/m/Y');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
