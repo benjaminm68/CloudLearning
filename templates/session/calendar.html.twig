@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Calendar
+{% endblock %}
+
+{% block contenu %}
+
+<div id="calendar-holder"></div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/calendar.js') }}"></script>
+{% endblock %}
+
+

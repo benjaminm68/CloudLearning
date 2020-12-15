@@ -51,7 +51,15 @@ class SessionController extends AbstractController
     public function show(Session $session): Response {
         return $this->render('home/index.html.twig', ['session' => $session]);
     }
+    
 
+    /**
+     * @Route("/calendar", name="session_calendar")
+     */
+    public function calendar(): Response
+    {
+        return $this->render('session/calendar.html.twig');
+    }
       /**
        * @IsGranted("ROLE_ADMIN")
        * @Route("/ajouter", name="session_add")
